@@ -17,7 +17,7 @@
 
     const unsubscribe = listaDeCriterios.subscribe(value => {
         const usuario = JSON.parse(localStorage.getItem('user'));
-        console.log(usuario)
+        // console.log(usuario)
         if (usuario) {
             usuario.listaCriterios = value;
             localStorage.setItem('user', JSON.stringify(usuario));
@@ -98,7 +98,7 @@
 <header>
     <nav class="navMenu">
         <div class="containerLogo">
-            <img src="\assets\Criterioso.png" alt="CriteriOso" class="imgLogo">
+            <img src="/assets/criterioso.png" alt="CriteriOso" class="imgLogo">
         </div>
         <Login bind:listaCriterios={listaDeCriterios_value}></Login>
     </nav>

@@ -5,4 +5,8 @@
 
 </script>
 
+<svelte:head>
+	<title>CriteriOso</title>
+</svelte:head>
+
 <Dashboard></Dashboard>

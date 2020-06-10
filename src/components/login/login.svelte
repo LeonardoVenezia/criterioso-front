@@ -90,7 +90,7 @@
     }
 
     function _peticion(url, metodo, params) {
-        return fetch('https://criterio-back.herokuapp.com' + url, params)
+        return fetch('https://criterio-back.herokuapp.com/' + url, params)
             .then((response) => {
                 if (!response.ok) throw Error(response.status);
                 return response;
