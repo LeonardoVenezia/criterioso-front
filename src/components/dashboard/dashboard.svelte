@@ -96,7 +96,7 @@
 <header>
     <nav class="navMenu">
         <div class="containerLogo">
-            <img src="/assets/criterioso.png" alt="CriteriOso" class="imgLogo">
+            <img src="criterioso.png" alt="CriteriOso" class="imgLogo">
         </div>
         <Login bind:listaCriterios={listaDeCriterios_value}></Login>
     </nav>
