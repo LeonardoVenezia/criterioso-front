@@ -6,6 +6,7 @@
     export let inputValue = '';
     export let id;
     export let comments = [];
+    let commentInputValue = '';
 
     let commentBox = false;
     import { listaDeCriterios } from '../../store/store.js';
@@ -35,10 +36,10 @@
         comments = [...comments_value];
         dispatch("comentar", {id, comments, listaDeCriterios_value});
     }
-    function btnDejarComentario() {
-        if (btnInput.value) {
-            comments = [...comments, {value: btnInput.value, id: comments.length}];
-            btnInput.value = '';
+    function btnDejarComentario(e) {
+        if (commentInputValue) {
+            comments = [...comments, {value: commentInputValue, id: comments.length}];
+            commentInputValue = '';
             dispatch("comentar", {id, comments, listaDeCriterios_value});
         }
     }
@@ -59,7 +60,7 @@
 <div class="commentBoxContainer">
     {#if commentBox}
         <div class="commentBox">
-            <input class="commentInput" id="btnInput" type="text">
+            <input class="commentInput" type="text" bind:value={commentInputValue}>
             <button class="commentBtn" on:click={btnDejarComentario}>Enviar</button>
         </div>
     {/if}

@@ -1,12 +1,13 @@
 
 <script>
-// import './dashboard.css';
     import Criterio from '../criterio/criterio.svelte';
     import Login from '../login/login.svelte';
     
     import { beforeUpdate, afterUpdate } from 'svelte';
     import { listaDeCriterios } from '../../store/store.js';
     import {onMount} from 'svelte'
+
+    let separadorCriterios = '|||||';
 
     onMount(() => {
         listaDeCriteriosPorAgregar.focus()
@@ -17,7 +18,6 @@
 
     const unsubscribe = listaDeCriterios.subscribe(value => {
         const usuario = JSON.parse(localStorage.getItem('user'));
-        // console.log(usuario)
         if (usuario) {
             usuario.listaCriterios = value;
             localStorage.setItem('user', JSON.stringify(usuario));
@@ -31,7 +31,7 @@
 
         let listaParseada = listaDeCriteriosPorAgregar.value
             .replace(/\n/g, "<br />")
-            .split('|||||')
+            .split(separadorCriterios)
             .filter(item => !!item);
 
         listaParseada = listaParseada.map((item, index)=>{
@@ -63,7 +63,6 @@
 
     function _marcar(id) {
         const index = id.detail -1;
-        // const estado = listaDeCriterios_value[index].estado;
         const estado = _estadoPorId(id);
         listaDeCriterios_value[index].estado = estado !== 'default marcado' ? 'default marcado' : 'default';
         listaDeCriterios.update(()=> [...listaDeCriterios_value]);
@@ -71,7 +70,6 @@
 
     function _hecho(id) {
         const index = id.detail -1;
-        // const estado = listaDeCriterios_value[index].estado;
         const estado = _estadoPorId(id);
 
         listaDeCriterios_value[index].estado = estado !== 'default hecho' ? 'default hecho' : 'default';
@@ -133,7 +131,9 @@
     id="limpiarCriterios"
     on:click={_limpiarListaCriterios}>Limpiar</button>
 
-
+<label for="inputSeparadorCriterios">Separar criterios por: 
+    <input id='inputSeparadorCriterios' type="text" bind:value={separadorCriterios}>
+</label>
 
 
 
